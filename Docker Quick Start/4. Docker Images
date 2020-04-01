@@ -1,0 +1,64 @@
+4. Docker Images
+=================
+
+https://docs.docker.com/engine/reference/commandline/image/
+
+
+A Docker image is a file, comprised of multiple layers, that is used to execute code in a Docker container. An image is essentially built from the instructions for a complete and executable version of an application, which relies on the host OS kernel. When the Docker user runs an image, it can become one or multiple instances of that container.
+
+Docker is an open source OS-level virtualization software platform primarily designed for Linux, Windows and MacOS. Sometimes moving software from one host machine to another will lead to issues because of any dependencies the software may have had. A container that moves from one Docker environment to another with the same OS will work without any changes, since the image includes all of the dependencies needed to execute the code. Docker will use resource isolation features in the OS kernel, such as cgroups in Linux, to run multiple independent containers on the same OS. 
+
+It is also important to note that containers differ from virtual machines (VMs), which encapsulate an entire OS with the executable code atop an abstraction layer from the physical hardware resources. 
+
+A Docker host can be either a virtual or a physical machine running the host operating system. The building and running of containers on the host is handled by a Docker daemon.
+
+Confusion sometimes occurs around Docker images and containers dealing with disk space. Size and virtual size do have different meanings. Size refers to the disk space used by the writable layer of each container. On the other hand, the disk space needed for the container and the writeable layer is called the "virtual size." This is because the read-only layers of an image can be shared between any container started from the same image.
+Uses of a Docker image
+
+One use case for a Docker image is to intermediate between other Docker functions.
+
+A Docker image includes the elements needed to run an application as a container -- such as code, config files, environment variables, libraries and run time. If the image is deployed to a Docker environment it can then be executed as a Docker container. The docker run command will create a container from a given image.
+
+Docker images are also a reusable asset that can be deployed on any host.
+Docker container vs. Docker image
+
+A Docker image is roughly equivalent to a "snapshot" in other virtual machine environments. It is a record of a Docker virtual machine, or Docker container, at a point in time. Think of a Docker image as a digital picture. A Docker container can be seen as a printout of that picture. Docker images have the special characteristic of being immutable. They can't be modified, but they can be duplicated and shared or deleted. The immutability is useful when testing new software or configurations because no matter what happens, the image will still be there, as usable as ever.
+Docker images and layers
+
+A Docker image is made up of multiple layers. A user composes each Docker image to include system libraries, tools and other files and dependencies for the executable code. Image developers can reuse static image layers for different projects. Reuse saves time, since a user does not have to create everything in an image.
+
+Most Docker images start with a base image -- although a user can build one entirely from scratch -- with the build command. A Docker web server image can also be used to build a container. Each image has one readable/writable top layer over static layers. Layers are added to the base image, tailoring to the code so it can run in a container. Each layer of a Docker image is viewable under /var/lib/docker/aufs/diff, or via the Docker history command in the command line interface (CLI). By default, Docker shows all top-layer images, such as the repository, tags and file sizes. Intermediate layers are cached, which makes top layers easier to view. Docker utilizes storage drivers to manage contents of image layers.
+
+When a new container is created from an image, a writable layer is also created. This layer is called the container layer, and it hosts all changes made to the running container. This layer can store newly written files, modifications to existing files and newly deleted files. The writable layer allows customization of the container. Any changes made to the writable layer are saved on that layer. Multiple containers can share the same underlying base image and have their own data state thanks to the writable layer.
+Docker image repositories
+
+Docker users can store images in private or public repositories, and from there can then deploy containers, test images and share them. Docker offers Docker Hub, which is a cloud-based registry service that includes private and public image repositories. It also has Docker Trusted Registry, which adds image management and access control features.
+
+Official images have been produced by Docker, while community images are images created by Docker users. CoScale agent is an example of an official Docker image, which provides monitoring to Dockerized applications. An example of a community Docker image is datadog/docker-dd-agent, which is a Docker container for agents in the log management program Datadog.
+
+An existing image can also be used to create a new image. In addition, users can upload their own custom image to the Docker Hub by using the docker push command. To ensure the quality of community images, Docker reviews the image and provides feedback for the image author before publishing. Once it is published, the author of the image is responsible for updates. Use prudent caution when sourcing an image from another party, as attackers can gain access to a system through copycat images designed to trick a user into thinking they are from a trusted source.
+
+The concept of a latest image may also cause confusion. Docker images tagged with ":latest" aren't necessarily "latest" in an ordinary sense. The latest tag does not refer to the most-recently-pushed version of an image. In fact, it is simply a default tag.
+Docker image commands
+
+According to Docker, there are sets of primary Docker image commands, categorized as child commands, some including:
+
+    docker image build: Builds an image from a Dockerfile.
+    docker image inspect: Displays information on one or more images.
+    docker image load: Loads an image from a tar archive or streams for receiving or reading input (STDIN).
+    docker image prune: Removes unused images.
+    docker image pull: Pulls an image or a repository from a registry.
+    docker image push: Pushes an image or a repository to a registry.
+    docker image rm: Removes one or more images.
+    docker image save: Saves one or more images to a tar archive (streamed to STDOUT by default).
+    docker image tag: Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE.
+
+The Docker CLI enables a user to initiate certain commands that customize Docker images. Examples of Docker commands for images follow:
+
+    docker history: Shows the history of an image, including changes made to it and its layers.
+    docker update: Allows a user to update the configuration of containers.
+    docker tag: Creates a tag, such as target_image, which enables users to group and organize container images.
+    docker search: Looks in Docker Hub for whatever the user needs.
+    docker save: Allows a user to save images to an archive.
+    docker compose: Used to handle an environment variable.
+

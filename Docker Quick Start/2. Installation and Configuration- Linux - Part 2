@@ -1,0 +1,28 @@
+2. Installation and Configuration: Linux — Part 2:
+==================================================
+
+there is always more than one way to perform a task on Linux. Scripts for this installation can be found at:
+
+https://get.docker.com
+
+and
+
+https://github.com/docker/docker-install
+
+
+Following are the command to install docker using script:
+
+$wget -qO- https://get.docker.com |sh
+
+$ sudo systemctl enable docker
+
+Start Docker with the systemctl start command:
+$ sudo systemctl start docker
+
+For best practices, do not use root. Instead, add your user to the Docker group. For this example, our user is named user:
+$ sudo usermod -a -G docker user
+
+Once finished, log out and then log back in for changes to take effect.
+
+
+---------------------x-----------------------------------x------------------------------x------------------

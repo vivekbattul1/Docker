@@ -1,0 +1,121 @@
+Quick Start
+===========
+1. Installation and Configuration: Linux — Part 1 :
+===================================================
+
+-------------------------
+Install Docker on CentOS:
+-------------------------
+If you are not running on a CentOS v7 box, ensure that your kernel is running version 3.10 or better by running the uname -r (give you kerner version command and 
+cat /etc/*release* (it will show you OS name): 
+
+$ uname -r
+$ cat /etc/*release*
+
+
+Install required packages :
+---------------------------
+$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+
+Setting up the Repository :
+---------------------------
+Add the docker repository to your server to ensure that you have the latest version using the sudo yum-config-manager \ --add-repo \ command. When you do so, the GPG key will be verified. As of publishing this guide, the fingerprint is 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35:
+
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo    
+
+If the two do not match, then you are not pulling from the correct place. Check that the information was entered correctly.
+
+
+Install Docker community edition :
+----------------------------------
+Install docker with the yum install command:
+$ sudo yum install docker-ce
+
+Enable Docker with the systemctl enable command:
+$ sudo systemctl enable docker
+
+Start Docker with the systemctl start command:
+$ sudo systemctl start docker
+
+Confirm that Docker installed correctly with the docker run command:
+$ sudo docker run hello-world
+
+
+Optional :
+---------
+For best practices, do not use root. Instead, add your user to the Docker group. For this example, our user is named user:
+
+$ sudo usermod -a -G docker user
+
+Confirm the change with the grep command:
+$ grep docker /etc/group
+docker:x:987:user
+
+Once finished, log out and then log back in for changes to take effect.
+
+Note:
+-----
+Install container-selinux before installing docker-ce. You can do so by looking up the correct package [http://mirror.centos.org/centos/7/extras/x86_64/Package] then installing it on the system:
+
+
+
+-------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx------------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxx-------------------------
+
+
+--------------------------
+Install Docker on Ubuntu:
+--------------------------
+If you are not ensure that your kernel is running version 3.10 or higher by running the uname -r (give you kerner version command and 
+cat /etc/*release* (it will show you OS name):
+
+$ uname -r
+4.4.0-1063-aws
+
+$ cat /etc/*release*
+
+Setting up the Repository
+-------------------------
+Ensure your apt package index is up to date.
+$ sudo apt-get update
+
+Install the following apt packages to allow apt to use a repository over HTTPS:
+$ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+Add Docker’s official GPG key:
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Verify that the GPG key fingerprint matches. As of publishing this guide, the fingerprint is 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88:
+$ sudo apt-key fingerprint 0EBFCD88
+
+pub   4096R/0EBFCD88 2017-02-22
+      Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid   Docker Release (CE deb) <docker@docker.com>
+sub   4096R/F273FCD8 2017-02-22 
+
+
+Add the repository using the add-apt-repository command:
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+Install Docker Community Edition
+---------------------------------
+Update the apt package index using the apt-get update command:
+$ sudo apt-get update
+
+Install Docker Community Edition using the apt-get install docker-ce command:
+$ sudo apt-get install docker-ce
+
+Confirm Docker installed correctly using the docker run command:
+$ sudo docker run hello-world
+
+Optional
+---------
+For best practices, do not use root. Instead, add your user to the Docker group. For this example, our user's is named user:
+
+$ sudo usermod -a -G docker user
+
+Confirm the change using the grep command:
+$ grep docker /etc/group 
+docker:x:999:user
+
+Once finished, log out and then log back in for changes to take effect.
