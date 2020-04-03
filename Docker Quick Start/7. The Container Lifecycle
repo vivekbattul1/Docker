@@ -1,0 +1,55 @@
+7. The Container Lifecycle
+===========================
+how to create, start, and stop containers, as well as how to connect to an already running container.
+-----------------------------------------------------------------------------------------------------
+
+To see any container running on this server:
+$ docker container ls
+
+you can see there is random name in end coloumn 
+where the name came from?
+that one is come from below project and the every name has a meaning you can go and explore this things
+https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go
+
+
+To see any container previous had running and now in stopped state:
+--------------------------------------------------------------------
+$ docker container ls -a
+
+
+To run docker container:
+------------------------
+$ docker container run -it ubuntu:16.04
+
+when you exit from this container its going in stopped state 
+
+
+Start or run a stopped container and take a bash or take a shell of that container
+----------------------------------------------------------------------------------
+syntax:
+-------
+$ docekr conatiner start <container ID or continer name>
+eg:
+---
+$ docker container start 5748392920
+
+$docker attach <containerID>  // to attach mode ( it gives terminal )
+
+
+To stop a running container:
+----------------------------
+$ docker container stop <container name or ID>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

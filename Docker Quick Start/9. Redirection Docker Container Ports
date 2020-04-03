@@ -1,0 +1,40 @@
+9. Redirection: Docker Container Ports:
+========================================
+we will learn about Docker ports. While we will discuss Docker specifically, the concepts we'll learn in this apply to every container technology. 
+By exposing ports, we can create internal connections to locally hosted applications and then, when we're ready, publish those ports to make the connection available to the outside world.
+
+Note: if any rpms, such as elinks, need to be installed, use 'yum install $rpm_name' to install it.
+
+
+To run a container with detached mode:
+--------------------------------------
+$ docker container run -d nginx   //  -d option is detached mood it runs the container in background and it gives your shell to use 
+
+it exposes port 80 bydefault because of nginx image and it is accesslible only locally or for that server only
+
+To take container IP using below command:
+-----------------------------------------
+$ docker container instpect <containerID> | grep IPAdd
+
+to get this ip and check the connection is happend or not
+
+$ elinks <ipaddress>:80
+
+
+
+
+
+To expose port to world its mapped random system port to 80 port on container:
+------------------------------------------------------------------------------
+$ docker container run -d -P nginx        // -P option is to open port to world and its mapped the random port to container port 80(depends on service)
+
+
+To expose port 80 to world and mapped port 80 on container:
+-----------------------------------------------------------
+$ docker container run -d -p 80:80 httpd     // -p option is mapped 80 and expose to world and port map to container port 80
+
+
+
+
+
+

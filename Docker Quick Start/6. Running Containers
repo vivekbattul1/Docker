@@ -1,0 +1,35 @@
+6. Running Containers
+=====================
+
+
+To run a container use below command:
+-------------------------------------
+sytnax:
+docker container run <image name> 
+eg:
+$ docker container run hello-world     or   docker run hello-world
+
+To list docker images present on you local system:
+--------------------------------------------------
+$ docker images 
+$ docker image ls
+
+
+To run a ubuntu container and access its bash using below command:
+------------------------------------------------------------------
+syntax:
+$docker container run -it --name python-container <imagename or image ID>
+
+-i option is used for interactive 
+-t option is used for psuedo tty terminal 
+--name option is used to specify a name to container so it is easy to find out
+
+eg:
+docker container run -it --name python-container <imagename or image ID>
+
+
+
+
+
+
+

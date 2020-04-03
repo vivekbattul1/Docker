@@ -1,0 +1,46 @@
+5. The Dockerfile:
+==================
+Docker builds images automatically by reading the instructions from a Dockerfile -- a text file that contains all commands, in order, needed to build a given image. A Dockerfile adheres to a specific format and set of instructions which you can find at Dockerfile reference.
+
+A Docker image consists of read-only layers each of which represents a Dockerfile instruction. The layers are stacked and each one is a delta of the changes from the previous layer.
+
+
+Dockerfile best practices can be found at:
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#pipe-dockerfile-through-stdin
+
+
+To create a simple Dockerfile and build an Image:
+-------------------------------------------------
+
+step 1: create a simple file give name as Dockerfile
+-------
+$ vim Dockerfile    // write your dockerfile here we build simple ubuntu image and install python on top of that base image
+----------------
+FROM ubuntu:16.04
+LABEL maintainer="vivekb@acc.ltd"
+RUN apt-get update
+RUN apt-get install -y python3
+
+:wq   // save and exit from vim editor
+
+Each instruction creates one layer:
+------------------------------------
+FROM creates a layer from the ubuntu:16.04 Docker image.
+LABEL its just tag a label to give information
+RUN builds your application with make.
+
+
+
+below command build the docker image from the docker file
+$ docker build .
+
+To check images use below command
+$ docker images
+
+
+
+
+
+
+
+

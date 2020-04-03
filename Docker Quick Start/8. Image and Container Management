@@ -1,0 +1,40 @@
+8. Image and Container Management
+=================================
+
+We now know how to pull and install images and instantiate containers. Removing them is equally important, but there are some caveats. Let's see about what we need to know!
+
+
+TO remove stopped docker container 
+----------------------------------
+$ docekr container rm <container id or name>
+$ docker container rm <continerid> <container name>   // you can remove multiple continer at a time
+
+
+To remove docker images you
+============================  
+Note: you need to stop the container which refer the image other wise it will not remove
+$ docker rmi <imageID> 
+
+
+
+To tag and push custom images to docker hub :
+--------------------------------------
+
+first login to docker hub account
+
+$ docker login
+username:
+password:
+
+$ docker tag <imageid> <dockerid>/<imagename what you want>:<tagname>
+$ docker tag 73849300 vivekbattul1/onboarding:v1
+
+$ docker push vivekbattul1/onboarding
+
+
+To pull our image from docker hub:
+$ docker pull vivekbattul1/onboarding
+
+
+
+

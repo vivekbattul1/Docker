@@ -1,0 +1,59 @@
+10. Redirection: Docker Container Volumes
+==========================================
+we will go over how to create and use Docker volumes. We will also discuss their ability to persist data outside of the container lifecycle.
+We will be making use of two seprate arguments: -v and --mount. Additional documentation for these options can be fond through the Docker Docs.( https://docs.docker.com/storage/volumes/ )
+More explanation on Docker containers and volumes can be found in the Docker Overview. ( https://docs.docker.com/engine/docker-overview/ )
+
+
+To list docker volume:
+-----------------------
+$ docker volume ls
+
+To create docker volume:
+------------------------
+$ docker volume create <give any name to volume>
+$ docker volume create devvolume      // this volumen created on locally
+
+
+To inspect docker volume:
+-------------------------
+$ docker volume inspect <volume name>
+$ docker volume inspect devvolume
+
+To mount the volume to container:
+---------------------------------
+Note: -v option use for standalone container and --mount use in docker swarm services 
+
+$ docker container run -d --name devcontainer --mount source=devvolume,target=/app nginx
+
+-d option: run in detached mode
+--name option: give name to container
+--mount option: mount volume 
+source=devveolume : it is our volume created to map to locally
+target=/app : it is mounted on /app directory
+
+
+To inspect container to know more about volume locations:
+----------------------------------------------------------
+$ docker container inspect <containername>
+goto mount section u will find more info like source target
+
+volumes are resides in following location:
+------------------------------------------
+$ sudo ls /var/lib/docker/volumes
+
+
+To enter or run a command in container using following command you can get container terminal or bash
+------------------------------------------------------------------------------------------------------
+$ docker container exec -it <continer name or id> sh
+
+
+To map volume using -v option:
+------------------------------
+docker container run -d --name devcont2 -v devvolume:/app nginx     
+
+// it will map locall devvolume folder which is bydefault resides in /var/lib/docker/volumes/devvolume/_data with /app directoy inside the conaitner
+
+
+
+
