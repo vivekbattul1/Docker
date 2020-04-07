@@ -1,0 +1,19 @@
+4. Docker Hub
+=============
+we will take a quick look at Docker Hub and its available features.
+
+What is Docker Hub?
+--------------------
+
+Docker Hub:
+	- Public Docker registry
+	- Provided by Docker
+	- Features:
+		- Repositories
+		- Teams and Organizations
+		- Official Images
+		- Publisher Images
+		- Builds
+		- Webhooks
+	
+	- https://hub.docker.com/signup
