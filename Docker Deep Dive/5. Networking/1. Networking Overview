@@ -1,0 +1,29 @@
+1. Networking Overview
+=======================
+Networking Overview
+--------------------
+In this we will go over the components and theory of how networking functions in Docker.
+
+Docker Networking
+------------------
+Docker Networking:
+	- Open-source pluggable architecture
+	- Container Network Model (CNM)
+	- libnetwork implements CNM
+	- Drivers extend the network topologies
+
+Network Drivers:
+	-  bridge
+	-  host
+	-  overlay
+	-  macvlan
+	-  none
+	-  Network plugins
+
+
+Container Network Model
+-----------------------
+Defines three building blocks:
+	-  Sandboxes
+	-  Endpoints
+	-  Networks
