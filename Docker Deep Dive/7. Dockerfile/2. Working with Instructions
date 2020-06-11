@@ -79,3 +79,8 @@ $ docker container run -d --name weather-app1 -p 8081:3000 linuxacademy/weather-
 List all running containers:
 ----------------------------
 $ docker container ls
+
+
+Note: difference between add or copy
+-------------------------------------
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy
